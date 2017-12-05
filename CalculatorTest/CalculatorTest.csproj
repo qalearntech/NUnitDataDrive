@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="CalculatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoftAsset.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Basic_NUnitTest\MyTestApp.csproj">

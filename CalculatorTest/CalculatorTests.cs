@@ -22,6 +22,13 @@ namespace CalculatorTest
             testObj = new Calculator();
         }
 
+        [TearDown]
+        public void BeforeEndTest()
+        {
+            if (Soft.softAssertFailed)
+                Assert.Fail("Soft assert failed");
+        }
+
         [Test]
         [Parallelizable]
         [Category("1")]
@@ -33,18 +40,21 @@ namespace CalculatorTest
             [Values(5, 7, 9)] int expectedResult
             )
         {
-            Assert.AreEqual(expectedResult, testObj.Add(num1, num2), "Verified add functionality");
+            Assert.AreEqual(expectedResult, testObj.Add(num1, num2), "Verified add functionality");            
         }
 
         [Test]
         [Parallelizable]
         [Category("2")]
         [TestCase(2, 1, 1)]
-        [TestCase(4, 2, 2)]
-        [TestCase(5, 2, 2)]
+        //[TestCase(4, 2, 2)]
+        //[TestCase(5, 2, 2)]
         public void DiffTest(int num1, int num2, int expectedDiff)
         {
             Assert.AreEqual(expectedDiff, testObj.Diff(num1, num2), "Verified difference functionality");
+            Soft.Assert(() => Assert.AreEqual(3, 2, "AreEqual"));
+            Console.WriteLine("Continuing with test");
+            Assert.AreEqual(2, 2, "AreEqual");
         }
 
 
